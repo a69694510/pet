@@ -1,5 +1,5 @@
 <template>
-  <el-row >
+  <el-row>
     <el-col :span='2'>
       &nbsp;
     </el-col>
@@ -21,13 +21,15 @@
   </el-row>
 </template>
 <script type="text/javascript">
+import login from './login'
 export default {
   methods:{
     showLogin(){
       //$parent is APP.vue
       //diaLo is tap
       //don't forget the ref behind 's'
-      this.$parent.$refs.diaLol.showDiaLo()
+      //this headbar is public
+      this.$parent.$refs.diaLol.showDiaLo(login)
     }
   }
 }
