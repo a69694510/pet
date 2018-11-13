@@ -13,7 +13,17 @@
       </el-input>
     </el-col>
     <el-col :span='6' style="background:#f9fafc">
-      <button type="success" @click='showLogin'>join us</button>
+      <!-- 0未登陆 1登陆成功 -->
+      <el-button v-if='flag==0' type="success" @click='showLogin'>join us</el-button>
+
+      <div v-if='flag==1' style="font-size:1em">
+        <span>主页</span>
+        <span>空间</span>
+        <span>寄养</span>
+        <span>医院</span>
+        <span>食物</span>
+        <span>问答</span>
+      </div>
     </el-col>
     <el-col :span='2'>
       &nbsp;
@@ -22,7 +32,12 @@
 </template>
 <script type="text/javascript">
 import login from './login'
-export default {
+export default{
+  data(){
+    return{
+      flag:0
+    }
+  },
   methods:{
     showLogin(){
       //$parent is APP.vue

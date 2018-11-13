@@ -22,7 +22,7 @@
                   </tr>
                   <tr>
                       <td align='center' colspan="2">
-                         <el-button type="primary" value="login">sign in</el-button>
+                         <el-button type="primary" @click='signin' value="login">sign in</el-button>
                       </td>
                   </tr>
               </table>
@@ -68,25 +68,38 @@
 </template>
 <script>
 //npm install axios --save-dev
-import axios from 'axios';
+// import axios from 'axios';
+// import {httpPost} from '../common/httpbean'
+import {onsignup,onsignin,signinGet} from '../vuex/actions/Useraction'
+let that = null;
 export default {
+  data(){
+    that=this;
+    return{
+
+    }
+  },
+  //计算，其实就是监听
+  computed:{
+    loginbean:signinGet
+  },
+  //watch,听完了在看
+  watch:{
+    // rs就是loginbean 一登陆就会弹出来
+    loginbean:function(rs){
+      alert('loginV受到'+rs.nickname);
+      that.$parent.$parent.hidDiaLo();
+      that.$parent.$parent.$parent.$refs.headBar.flag=1;
+      //router jusp
+      that.$router.push('/private/home')
+    }
+  },
   methods:{
     signup:function(){
-       let formObj = {};
-       formObj.email = signup.email.value;
-       formObj.pwd = signup.pwd.value;
-       formObj.repwd = signup.repwd.value;
-       formObj.nickname= signup.nickname.value;
-       alert(formObj.nickname)
-       //if success then res else catch  error
-       //i not't Cross domain 
-       axios.post('http://localhost:3000/users/signup',formObj)
-       .then(function(res){
-         alert(res.data)
-       })
-       .catch(function(err){
-         alert(err)
-       })
+        onsignup(signup,that)
+    },
+    signin:function(){
+        onsignin(signin,that)
     }
   }
 }

@@ -23,6 +23,9 @@ export default{
       // if show
       this.currentView = vnode
       this.dialogVisible=true
+    },
+    hidDiaLo(){
+      this.dialogVisible=false;
     }
   }
 };
