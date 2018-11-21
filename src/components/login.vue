@@ -79,7 +79,7 @@ export default {
 
     }
   },
-  //计算，其实就是监听
+  //计算熟悉，其实就是监听
   computed:{
     loginbean:signinGet
   },
@@ -87,7 +87,6 @@ export default {
   watch:{
     // rs就是loginbean 一登陆就会弹出来
     loginbean:function(rs){
-      alert('loginV受到'+rs.nickname);
       that.$parent.$parent.hidDiaLo();
       that.$parent.$parent.$parent.$refs.headBar.flag=1;
       //router jusp

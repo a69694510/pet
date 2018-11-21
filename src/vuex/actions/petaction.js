@@ -1,11 +1,12 @@
 import {httpPost,httpBinaryPost} from '../../common/httpbean'
 
-export function subpetInfo(petForm){
-  let formObj = {};
-  formObj.petnickname = perForm.petnickname.value;
-  formObj.petimg = perForm.petimg.file[0];
+export function subpetInfo(petform,self){
+  let formObj = new FormData(petform);
+  httpBinaryPost('/pet/subpetInfo',formObj,cf)
   function cf(res){
-    alert(res.data);
+    //跳转，但是如果
+    // self.$router.push('/private/home')
+    //刷新
+    self.$router.go(0)
   }
-  httpBinaryPost('pet/petinfo',formObj,cf)
 }

@@ -1,8 +1,8 @@
 <template>
   <div id="app" >
-    <headBar ref='headBar' />
+    <headBar ref='headBar'/>
     <router-view/>
-    <diaLo ref='diaLol' />
+    <diaLo ref='diaLol'/>
   </div>
 </template>
 
