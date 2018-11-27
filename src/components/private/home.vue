@@ -28,7 +28,7 @@
             </el-menu-item>
           </el-menu>
     </el-col>
-    <el-col :span='16' style="background:green">
+    <el-col :span='16'>
       <petform v-if='flag==0'/>
       <petinfo ref='petinfo' v-if='flag>0'/>
     </el-col>
@@ -42,7 +42,7 @@
 let self;
 // import axios from 'axios'
 import {httpGet} from '../../common/httpbean'
-import {subpetInfo} from '../../vuex/actions/petaction'
+// import {subpetInfo} from '../../vuex/actions/petaction'
 import petform from './petform'
 import petinfo from './petInfo'
 export default {
@@ -50,10 +50,13 @@ export default {
   mounted(){
     httpGet('/pet/mypetinfo',cf)
     function cf(res){
-      let rs = res.data;
-      let len = rs.length
-      if(len>0){
+      let arr = res.data;
+      let count = arr[0];
+      let rs = arr[1];
+      // let len = rs.length;
+      if(count>0){
         //给petinfo赋上从后端传来
+        self.$refs.petinfo.count=count
         self.$refs.petinfo.rs=rs
         self.flag=1;
       }
@@ -61,6 +64,7 @@ export default {
         self.flag=0;
       }
     }
+
   },
   data(){
       self=this

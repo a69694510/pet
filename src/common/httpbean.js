@@ -1,5 +1,6 @@
 //封装http请求
 import axios from 'axios'
+//GET 这个方法formObj可以默认为空
 export function httpGet(url,cb,formObj={}){
   axios.get('/api'+url,formObj)
   .then(function(res){
