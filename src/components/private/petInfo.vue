@@ -20,9 +20,6 @@
                 <el-button type='primary' @click='delPetInfo(scope.row.id)'>
                       删除
                 </el-button>
-                <el-button type='primary'>
-                      添加
-                </el-button>
             </template>
         </el-table-column>
     </el-table>
@@ -56,14 +53,14 @@
    },
    methods:{
      updPetInfo:function(petinfo){
-       let dilog =  this.$root.$children[0].$refs.diaLol
+       let dialog =  this.$root.$children[0].$refs.diaLol
        //这一步一定要加载完成.下一步调用才是有效的
        //showDiaLo就是显示方法
-       dilog.showDiaLo(updpetform);
+       dialog.showDiaLo(updpetform);
        //动态组件有特殊的写法
        //注意这里要写currentView
        //petinfo就是这条记录的值
-       dilog.currentView.methods.setInfo(petinfo);
+       dialog.currentView.methods.setInfo(petinfo);
      },
      delPetInfo:function(id){
        if(confirm('确定删除吗')){

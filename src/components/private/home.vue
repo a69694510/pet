@@ -4,29 +4,7 @@
       &nbsp;
     </el-col>
     <el-col :span='4' style="background:yellow">
-          <el-menu  default-active="1" class="el-menu-vertical-demo" style="height:800px;">
-            <el-menu-item index="1">
-              <i class="el-icon-menu"></i>
-              <span slot="title">&nbsp;&nbsp;&nbsp;&nbsp;宠物信息</span>
-            </el-menu-item>
-              <!--  disabled -->
-            <el-menu-item index="2">
-              <i class="el-icon-document"></i>
-              <span slot="title">&nbsp;&nbsp;&nbsp;&nbsp;宠物相册</span>
-            </el-menu-item>
-            <el-menu-item index="3">
-              <i class="el-icon-setting"></i>
-              <span slot="title">&nbsp;&nbsp;&nbsp;&nbsp;宠物日至</span>
-            </el-menu-item>
-            <el-menu-item index="4">
-              <i class="el-icon-setting"></i>
-              <span slot="title">宠物朋友圈</span>
-            </el-menu-item>
-            <el-menu-item index="5">
-              <i class="el-icon-setting"></i>
-              <span slot="title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;问&nbsp;&nbsp;&nbsp;&nbsp;答&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            </el-menu-item>
-          </el-menu>
+        <navmenu/>
     </el-col>
     <el-col :span='16'>
       <petform v-if='flag==0'/>
@@ -43,6 +21,7 @@ let self;
 // import axios from 'axios'
 import {httpGet} from '../../common/httpbean'
 // import {subpetInfo} from '../../vuex/actions/petaction'
+import navmenu from './navmenu'
 import petform from './petform'
 import petinfo from './petInfo'
 export default {
@@ -74,7 +53,14 @@ export default {
   },
   components:{
     petform:petform,
-    petinfo:petinfo
+    petinfo:petinfo,
+    navmenu:navmenu
+  },
+  methods:{
+    writeSay:function(){
+      //跳
+      self.$router.push('/private/writesay')
+    }
   }
 }
 </script>

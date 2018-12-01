@@ -26,8 +26,7 @@
           </tr>
           <tr>
             <td>
-                <el-input name='petsort' v-model='petsort' placeholder='宠物品种'>
-                </el-input>
+                <el-input name='petsort' v-model='petsort' placeholder='宠物品种'></el-input>
             </td>
           </tr>
           <tr>
@@ -44,9 +43,7 @@
           </tr>
           <tr>
             <td>
-              <el-input name='age' v-model='petage' placeholder='宠物年龄'>
-
-              </el-input>
+              <el-input name='age' v-model='petage' placeholder='宠物年龄'></el-input>
             </td>
           </tr>
           <tr>
@@ -60,10 +57,10 @@
             <td colspan="2" align='center'>
                 <!-- 这里放一个隐藏 -->
                 <input type="hidden" name="petimg" />
-                <!-- 再放一个隐藏 -->
-                <input type="hidden" name="pid"/>
                 <!--  在加个隐藏，是切换种类的-->
                 <input type="hidden" name="pettype" />
+                <!-- 再放一个隐藏 -->
+                <input type="hidden" name="pid"/>
                 <el-button type='success' @click='subpetInfo'>
                   修改
                 </el-button>
@@ -74,7 +71,7 @@
 </template>
 
 <script>
-import {subpetInfo} from '../../vuex/actions/petaction'
+import {updPetInfo} from '../../vuex/actions/petaction'
 let pet;
 let self;
 export default {
@@ -100,7 +97,6 @@ export default {
         value: '',
         sex:0,
         petsort:'',
-        petage:0,
         pettype:''
     }
   },
@@ -116,7 +112,7 @@ export default {
         if(!isNaN(parseInt(this.pettype))){
           petform.pettype.value=this.pettype;
         }
-        updpetInfo(petform,this);
+        updPetInfo(petform,this);
     },
     setInfo:function(peta){
       //先把petinfo存一个内存里面，然后加载完后在调用,mounted
@@ -126,18 +122,17 @@ export default {
     setFormInfo:function(pet){
       //因为已经加载一次，所以petform是有值的
       if(petform){
-        petform.pid.value=pet.id
+        petform.pid.value =pet.id
         petform.nickname.value = pet.nickname;
-        self.$refs.petphoto.src='api'+pet.petimg;
+        self.$refs.petphoto.src = 'api'+pet.petimg;
         petform.petimg.value = pet.petimg;
         // petform.petimg.value = pet.petimg;
-        self.pettype=self.options[pet.pettype].label
-        petform.pettype.value=pet.pettype
-        petform.petsort.value=pet.petsort
-
-        self.sex=pet.sex
-        petform.age.value=pet.age
-        petform.introduce.value=pet.introduce
+        self.pettype = self.options[pet.pettype].label;
+        petform.pettype.value = pet.pettype
+        petform.petsort.value = pet.petsort
+        self.sex = pet.sex
+        petform.age.value = pet.age
+        petform.introduce.value = pet.introduce
       }
     }
   },

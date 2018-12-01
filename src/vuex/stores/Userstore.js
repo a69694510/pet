@@ -1,12 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex';
 
-Vue.use(Vuex);   //初始化
+Vue.use(Vuex);
+//初始化
 let user = new Vuex.Store({
-    state:{      //存储空间
+    state:{
+      //存储空间
       loginbean:null
     },
-    mutations:{   //事件相应,修改存储的方法集
+    mutations:{
+       //事件相应,修改存储的方法集
       signup:function(state,data){
         // state.signRS =data;
       },

@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import PrivateHome from '@/components/private/home'
+import writesay from '@/components/private/say/writeSay'
+
 
 Vue.use(Router)
 export default new Router({
@@ -15,6 +17,11 @@ export default new Router({
       path: '/private/home',
       name: 'PrivateHome',
       component: PrivateHome
+    },
+    {
+      path: '/private/writesay',
+      name: 'writesay',
+      component: writesay
     }
   ]
 })

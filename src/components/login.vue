@@ -79,20 +79,20 @@ export default {
 
     }
   },
-  //计算熟悉，其实就是监听
-  computed:{
-    loginbean:signinGet
-  },
-  //watch,听完了在看
-  watch:{
-    // rs就是loginbean 一登陆就会弹出来
-    loginbean:function(rs){
-      that.$parent.$parent.hidDiaLo();
-      that.$parent.$parent.$parent.$refs.headBar.flag=1;
-      //router jusp
-      that.$router.push('/private/home')
-    }
-  },
+  // //计算熟悉，其实就是监听
+  // computed:{
+  //   loginbean:signinGet
+  // },
+  // //watch,听完了在看
+  // watch:{
+  //   // rs就是loginbean 一登陆就会弹出来
+  //   loginbean:function(rs){
+  //     that.$parent.$parent.hidDiaLo();
+  //     that.$parent.$parent.$parent.$refs.headBar.flag=1;
+  //     //router jusp
+  //     that.$router.push('/private/home')
+  //   }
+  // },
   methods:{
     signup:function(){
         onsignup(signup,that)

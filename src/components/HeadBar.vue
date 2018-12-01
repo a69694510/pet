@@ -22,7 +22,12 @@
         <span>寄养</span>
         <span>医院</span>
         <span>食物</span>
-        <span>问答</span>
+        <span>
+          <!--这里一定要写native 而且to必须用单引号  -->
+
+          <router-link to='' @click.native='logout'>注销</router-link>
+
+        </span>
       </div>
     </el-col>
     <el-col :span='2'>
@@ -31,21 +36,28 @@
   </el-row>
 </template>
 <script type="text/javascript">
-import login from './login'
-export default{
-  data(){
-    return{
-      flag:0
-    }
-  },
-  methods:{
-    showLogin(){
-      //$parent is APP.vue
-      //diaLo is tap
-      //don't forget the ref behind 's'
-      //this headbar is public
-      this.$parent.$refs.diaLol.showDiaLo(login)
+  import login from './login'
+  import {judgeSession,logout} from '../vuex/actions/Useraction'
+  export default{
+    data(){
+      return{
+        flag:0
+      }
+    },
+    methods:{
+      showLogin(){
+        //$parent is APP.vue
+        //diaLo is tap
+        //don't forget the ref behind 's'
+        //this headbar is public
+        this.$parent.$refs.diaLol.showDiaLo(login)
+      },
+      logout(){
+        logout(this)
+      }
+    },
+    mounted(){
+        judgeSession(this)
     }
   }
-}
 </script>

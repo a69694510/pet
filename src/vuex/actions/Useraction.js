@@ -1,4 +1,4 @@
-import {httpPost} from '../../common/httpbean'
+import {httpPost,httpGet} from '../../common/httpbean'
 import userstore from '../stores/Userstore'
 
 export function onsignup(signup,that){
@@ -36,6 +36,10 @@ export function onsignin(signin,that){
     if(res.data!=0){
         //抛出消息
         userstore.commit('signin',res.data)
+        that.$parent.$parent.hidDiaLo();
+        that.$parent.$parent.$parent.$refs.headBar.flag=1;
+        //router jusp
+        that.$router.push('/private/home')
     }
     else {
       alert('账号/密码错误')
@@ -43,8 +47,37 @@ export function onsignin(signin,that){
   }
   httpPost('/user/signin',formObj,cf)
 }
+export function judgeSession(self){
+  let loginbean=userstore.state.loginbean
+  if(loginbean!==null){
+    self.flag=1
+  }
+  else {
+    function cf(res){
+      if(res.data!=0){
+        userstore.commit('signin',res.data);
+        self.flag=1;
+      }
+      else {
+        self.flag=0;
+        //跳回根路径
+        self.$router.push('/')
+      }
+    }
+    httpGet('/user/getLoginBean',cf)
+  }
+}
 
-
+export function logout(self){
+  function cf(res){
+    if(res.data==1){
+      userstore.commit('signin',null)
+      self.flag=0
+      self.$router.push('/')
+    }
+  }
+  httpGet('/user/logout',cf)
+}
 export function signinGet(){
     return userstore.state.loginbean;
 }

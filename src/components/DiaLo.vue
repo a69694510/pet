@@ -21,6 +21,7 @@ export default{
   methods:{
     showDiaLo(vnode){
       // if show
+      //vnode就是petform 要显示的表单
       this.currentView = vnode
       this.dialogVisible=true
     },
